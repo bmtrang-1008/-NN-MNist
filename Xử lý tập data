@@ -1,0 +1,16 @@
+
+#One_hot (data normalization)
+x_train = x_train/255
+x_test = x_test/255
+
+#Num of class (0-9)
+num_classes = 10
+
+#convert class vectors to binary class matrices
+y_train = keras.utils.to_categorical(y_train, num_classes)
+y_test = keras.utils.to_categorical(y_test,num_classes)
+
+print(x_train.shape)
+print(x_test.shape)
+print(y_train.shape)
+print(y_test.shape)
