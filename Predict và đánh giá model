@@ -1,0 +1,23 @@
+#Đánh giá model
+score = model.evaluate(x_test,y_test)
+print('Test loss: %.4f' % (score[0]))
+print('Test accuracy: %.2f%%' %(score[1]*100))
+
+_____________________________________________________________________________________________________________
+
+#Predict kết quả
+import matplotlib.pyplot as plt
+import numpy as np
+
+classes = model.predict(x_test, batch_size=128)
+preds = np.argmax(classes, axis=1)
+
+for i in range(25,35):
+  plt.imshow(x_test[i], cmap='gray')
+  predict = "Kết quả dự đoán: " + str(preds[i])
+  plt.text(0,-2,predict)
+  plt.show()
+  
+  ______________________________________________________________________________________________________________________
+  
+  
