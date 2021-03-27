@@ -1,0 +1,38 @@
+#Start model NN
+from keras.layers import Dense, Flatten
+from keras.models import Sequential
+
+________________________________________________________________________________________________________________________________________________
+
+#Build Model NN
+learning_rate = 0.01
+num_epoch = 10
+batch_size = 128
+
+#Khởi tạo model
+model = Sequential()
+
+#Lớp Flatten có chức năng "trải thẳng" ảnh input đầu vào. 
+model.add(Flatten(input_shape=(28,28)))
+
+#Sử dụng hai lớp hindden layer với activation relu
+model.add(Dense(256, activation='relu'))
+model.add(Dense(256, activation='relu'))
+
+#Lớp output với softmax để classification
+model.add(Dense(num_classes,activation='softmax'))
+
+#Sử dụng method summary để giúp chúng ta tổng hợp lại model xem model có bao nhiêu layer, tổng số tham số bao nhiêu, shape của mỗi layer
+model.summary()
+
+_________________________________________________________________________________________________________________________________________________
+
+
+#Sau khi build model xong thì compile nó có tác dụng biên tập lại toàn bộ model của chúng ta đã build
+model.compile(loss=keras.losses.categorical_crossentropy,
+              optimizer=keras.optimizers.SGD(lr = learning_rate),
+              metrics=['accuracy'])
+
+#Fit data (đưa data) vào model cùng thông số batch_size, epochs
+model.fit(x_train, y_train, batch_size=batch_size, epochs=num_epoch)
+
